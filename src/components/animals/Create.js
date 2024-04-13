@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form } from '../../routes/animals/Form'
 import { useNavigate } from 'react-router-dom'
+import db from '../../firebase'
 
 export const Create = () => {
   const [animalName, setAnimalName] = useState('')
@@ -22,14 +23,22 @@ export const Create = () => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const createAnimal = async (e) => {
     e.preventDefault();
-    const newAnimal = {name: animalName, photo: photo, description: description}
-    alert(`${newAnimal.name} added!`);
-    navigate('/')
+    let animal = { name: animalName, photo, description }
+
+    try {
+      const response = await db.collection('animals').add(animal)
+      if (response.id !== undefined) {
+        alert(`${animal.animalName} with id: ${response.id} added!`);
+        navigate(`/animals/${response.id}`)
+      }
+    } catch (error) {
+      alert(`Error: ${error}`);
+    }
   }
 
   return (
-    <Form handleInput={handleInput} handleSubmit={handleSubmit} />
+    <Form handleInput={handleInput} handleSubmit={createAnimal} />
   )
 }
