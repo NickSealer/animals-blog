@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import db from '../../firebase'
 import { Loading } from '../Loading'
 
-export const Animal = () => {
+export const Animal = ({user}) => {
   const { id } = useParams('id')
   const [animal, setAnimal] = useState()
 
@@ -28,7 +28,7 @@ export const Animal = () => {
   return (
     <>
       {animal ? (
-        <Details animal={animal} />
+        <Details animal={animal} user={user} />
       ) : (
         <Loading />
       )}
