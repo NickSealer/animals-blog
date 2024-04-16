@@ -2,13 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const Details = ({ animal, user }) => {
+  let description = animal.description.split('\n').map((paragraph, index) => {
+    return <p key={index}>{paragraph}</p>
+  })
+
   return (
     <div className='details'>
       <div className='details-header'>
         <h1>{animal.name}</h1>
       </div>
       <div className='details-body'>
-        {animal.description}
+        {description}
       </div>
       <div className='details-footer'>
         <img src={animal.photo} alt={animal.name} ></img>

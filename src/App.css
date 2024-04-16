@@ -52,7 +52,7 @@
 }
 
 .login-form {
-  width: 500px;
+  max-width: 500px;
   margin: auto;
   border: gray 1px solid;
   border-radius: 10px;

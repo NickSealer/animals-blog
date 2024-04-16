@@ -12,8 +12,6 @@ export const Logout = () => {
   }
 
   return (
-    <div>
-      <Link onClick={handleLogout}>Logout</Link>
-    </div>
+    <Link onClick={handleLogout} className='nav-link'>Logout</Link>
   )
 }

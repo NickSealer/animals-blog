@@ -12,6 +12,9 @@ export const Layout = ({ user }) => {
             <img src={logo} className='d-inline-block align-text-top App-logo' alt='logo' style={{ width: 22, marginRight: 10 }} />
             Animals
           </a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
           <div className='collapse navbar-collapse' id='navbarNavDropdown'>
             <ul className='navbar-nav'>
               <li className='nav-item icon-nav'>
@@ -36,9 +39,12 @@ export const Layout = ({ user }) => {
                 </svg>
                 <NavLink to='/about' className='nav-link'>About</NavLink>
               </li>
+              <li className='nav-item icon-nav'>
+                {user && <Logout />}
+              </li>
             </ul>
           </div>
-          {user && <Logout />}
+
         </div>
       </nav>
       <Outlet />
